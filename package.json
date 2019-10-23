@@ -1,0 +1,19 @@
+{
+  "name": "pureserver",
+  "version": "1.0.0",
+  "description": "纯用node.js编写的本地服务器",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/niutrue/pureServer.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/niutrue/pureServer/issues"
+  },
+  "homepage": "https://github.com/niutrue/pureServer#readme"
+}
