@@ -1,23 +1,39 @@
 /**
  * 根据请求的路径提供对应的服务
  */
-
+const url = require('url');
 const getFileData = require('./getFileData');
 const get404Page = require('./get404Page');
+const processApi = require('./processApi');
 
-function processCore(pathname){
+function processCore(req){
     return new Promise((resolve,reject) => {
+        var pathname = url.parse(req.url).pathname;
         var apiRegExp = /^\/api\//;
         var staticRegExp = /\.(?:(?:html)|(?:css)|(?:js)|(?:jpg)|(?:jpeg)|(?:png)|(?:gif)|(?:ico))$/;
         
         // 提供接口服务
         if (apiRegExp.test(pathname)) {
-            resolve('提供接口服务');
+            processApi(req)
+                .then(data => {
+                    var info = {
+                        data:data,
+                        type:'api'
+                    }
+                    resolve(info);
+                })
+                .catch(err => {
+                    reject('404 Not Found');
+                })
         // 提供静态资源服务
         } else if (staticRegExp.test(pathname)) {
             getFileData(pathname)
             .then(data => {
-                resolve(data)
+                var info = {
+                    data:data,
+                    type:'static'
+                }
+                resolve(info)
             })
             .catch(err => {
                 if(err.code === 'ENOENT'){
@@ -25,7 +41,11 @@ function processCore(pathname){
                     if(/\.html$/.test(pathname)){
                         get404Page()
                             .then(data => {
-                                resolve(data)
+                                var info = {
+                                    data:data,
+                                    type:'static'
+                                }
+                                resolve(info)
                             })
                             .catch(err => {
                                 reject('404 Not Found')

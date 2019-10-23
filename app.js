@@ -1,15 +1,22 @@
 const http = require('http');
-const url = require('url');
 const processCore = require('./server/processCore');
 
 const app = http.createServer((req, res) => {
-    var pathname = url.parse(req.url).pathname;
-    processCore(pathname)
+    processCore(req)
         .then(data => {
-            res.end(data);
+            var type = data.type;
+            var info = data.data;
+            //var info = JSON.stringify(data.data);
+            if(type === 'api'){
+                info = JSON.stringify(data.data);
+                //res.writeHead(200,{'Content-Type':'text/plain'})
+            } else if(type === 'static'){
+
+            }
+            res.end(info);
         })
         .catch(err => {
-            res.writeHead(404, {'Content-Type':'text/plain'})
+            res.writeHead(404,{'Content-Type':'text/plain'})
             res.end(err);
         })
 });
