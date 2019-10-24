@@ -6,10 +6,9 @@ const app = http.createServer((req, res) => {
         .then(data => {
             var type = data.type;
             var info = data.data;
-            //var info = JSON.stringify(data.data);
             if(type === 'api'){
                 info = JSON.stringify(data.data);
-                //res.writeHead(200,{'Content-Type':'text/plain'})
+                res.writeHead(200,{'Content-Type':'text/plain;charset=UTF-8'})
             } else if(type === 'static'){
 
             }
