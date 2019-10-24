@@ -4,7 +4,7 @@
 // api集合
 const getUserName = require('./getUserName');
 var apiMap = {
-    getUserName
+    getUserName, //获取用户名
 }
 
 // 使用某个具体的api
