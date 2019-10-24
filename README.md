@@ -9,7 +9,8 @@
 ## 参考资料
 
 1. [node文档](https://nodejs.org/dist/latest-v12.x/docs/api/)
-2. [node错误处理]()
+2. [Content-type](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Type)
+3. [MIME types](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types)
 
 ## 扩展计划
 
