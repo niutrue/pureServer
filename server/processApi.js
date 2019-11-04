@@ -15,6 +15,14 @@ function processApi(req){
         pathname,
         query
     }
+    var params = '';
+    req.on('data', (chunk) => {
+        params += chunk;
+    })
+    req.on('end',() => {
+        console.log('eee')
+        console.log(params);
+    })
     return useParApi(info);
 }
 
