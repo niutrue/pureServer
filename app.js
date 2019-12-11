@@ -18,6 +18,3 @@ const app = http.createServer((req, res) => {
 });
 
 app.listen(7000);
-
-// const test = require('./test');
-
